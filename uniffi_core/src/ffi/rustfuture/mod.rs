@@ -52,7 +52,7 @@ where
     dyn RustFutureFfi<T::ReturnType>: HandleAlloc<UT>,
 {
     <dyn RustFutureFfi<T::ReturnType> as HandleAlloc<UT>>::new_handle(
-        RustFuture::new(future, tag) as Arc<dyn RustFutureFfi<T::ReturnType>>
+        RustFuture::new(Box::pin(future), tag) as Arc<dyn RustFutureFfi<T::ReturnType>>
     )
 }
 
